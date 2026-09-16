@@ -1,0 +1,10 @@
+{
+  "name": "sariyah/schedule",
+  "title": "Sariyah Schedule",
+  "description": "Event schedule with days and sessions.",
+  "category": "sariyah",
+  "icon": "calendar-alt",
+  "keywords": ["event", "schedule", "sessions"],
+  "acf": {"mode":"preview","renderTemplate":"render.php"},
+  "supports": {"anchor": true, "align": ["wide", "full"]}
+}
