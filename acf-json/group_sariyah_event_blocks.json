@@ -1,0 +1,17 @@
+{
+  "key": "group_sariyah_event_blocks",
+  "title": "Sariyah Event Blocks",
+  "fields": [
+    {"key":"field_sariyah_intro_eyebrow","label":"Eyebrow","name":"eyebrow","type":"text"},
+    {"key":"field_sariyah_intro_title","label":"Title","name":"title","type":"text"},
+    {"key":"field_sariyah_intro_description","label":"Description","name":"description","type":"textarea","new_lines":"wpautop"},
+    {"key":"field_sariyah_intro_image","label":"Image","name":"image","type":"image","return_format":"array","preview_size":"medium"},
+    {"key":"field_sariyah_intro_highlights","label":"Highlights","name":"highlights","type":"repeater","layout":"table","button_label":"Add Highlight","sub_fields":[{"key":"field_sariyah_intro_highlight_text","label":"Text","name":"text","type":"text"}]},
+    {"key":"field_sariyah_intro_organiser","label":"Event Organiser","name":"organiser","type":"text"},
+    {"key":"field_sariyah_intro_venue","label":"Venue","name":"venue","type":"text"},
+    {"key":"field_sariyah_intro_date","label":"Event Date","name":"event_date","type":"text"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/event-intro"}]],
+  "active":true,
+  "show_in_rest":true
+}
