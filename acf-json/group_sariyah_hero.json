@@ -1,0 +1,15 @@
+{
+  "key": "group_sariyah_hero",
+  "title": "Sariyah Hero",
+  "fields": [
+    { "key": "field_sariyah_hero_eyebrow", "label": "Eyebrow", "name": "eyebrow", "type": "text", "default_value": "WELCOME TO SARIYAH" },
+    { "key": "field_sariyah_hero_title", "label": "Title", "name": "title", "type": "text", "default_value": "Create unforgettable events and experiences" },
+    { "key": "field_sariyah_hero_description", "label": "Description", "name": "description", "type": "textarea" },
+    { "key": "field_sariyah_hero_background", "label": "Background Image", "name": "background_image", "type": "image", "return_format": "array", "preview_size": "large" },
+    { "key": "field_sariyah_hero_primary", "label": "Primary Button", "name": "primary_button", "type": "link", "return_format": "array" },
+    { "key": "field_sariyah_hero_secondary", "label": "Secondary Button", "name": "secondary_button", "type": "link", "return_format": "array" }
+  ],
+  "location": [[{ "param": "block", "operator": "==", "value": "acf/sariyah-hero" }]],
+  "active": true,
+  "show_in_rest": true
+}
