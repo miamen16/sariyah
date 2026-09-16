@@ -1,0 +1,26 @@
+{
+  "key":"group_sariyah_schedule",
+  "title":"Sariyah Schedule",
+  "fields":[
+    {"key":"field_sariyah_schedule_eyebrow","label":"Eyebrow","name":"eyebrow","type":"text","default_value":"SCHEDULE DETAILS"},
+    {"key":"field_sariyah_schedule_title","label":"Title","name":"title","type":"text","default_value":"Information of event schedule"},
+    {"key":"field_sariyah_schedule_description","label":"Description","name":"description","type":"textarea"},
+    {"key":"field_sariyah_schedule_days","label":"Days","name":"days","type":"repeater","layout":"block","button_label":"Add Day","sub_fields":[
+      {"key":"field_sariyah_schedule_date","label":"Date","name":"date","type":"text"},
+      {"key":"field_sariyah_schedule_day_name","label":"Day Name","name":"day_name","type":"text"},
+      {"key":"field_sariyah_schedule_sessions","label":"Sessions","name":"sessions","type":"repeater","layout":"block","button_label":"Add Session","sub_fields":[
+        {"key":"field_sariyah_schedule_start","label":"Start Time","name":"start_time","type":"text"},
+        {"key":"field_sariyah_schedule_end","label":"End Time","name":"end_time","type":"text"},
+        {"key":"field_sariyah_schedule_category","label":"Category","name":"category","type":"text"},
+        {"key":"field_sariyah_schedule_session_title","label":"Title","name":"title","type":"text"},
+        {"key":"field_sariyah_schedule_session_description","label":"Description","name":"description","type":"textarea"},
+        {"key":"field_sariyah_schedule_speaker","label":"Speaker","name":"speaker","type":"text"},
+        {"key":"field_sariyah_schedule_image","label":"Image","name":"image","type":"image","return_format":"array","preview_size":"medium"},
+        {"key":"field_sariyah_schedule_link","label":"Link","name":"link","type":"link","return_format":"array"}
+      ]}
+    ]}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/schedule"}]],
+  "active":true,
+  "show_in_rest":true
+}
