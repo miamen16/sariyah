@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/event-intro",
+  "title": "Sariyah Event Introduction",
+  "description": "Introduction and event information section.",
+  "category": "sariyah",
+  "icon": "info-outline",
+  "keywords": ["event", "about", "introduction"],
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "style": "file:./style.css"
+}
