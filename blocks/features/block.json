@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/features",
+  "title": "Sariyah Why Attend",
+  "description": "Feature cards explaining why visitors should attend.",
+  "category": "sariyah",
+  "icon": "star-filled",
+  "keywords": ["event", "features", "benefits"],
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "style": "file:./style.css"
+}
