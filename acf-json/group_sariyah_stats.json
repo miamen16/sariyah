@@ -1,0 +1,8 @@
+{
+  "key":"group_sariyah_stats",
+  "title":"Sariyah Event Stats",
+  "fields":[{"key":"field_sariyah_stats","label":"Statistics","name":"stats","type":"repeater","layout":"table","min":1,"max":4,"button_label":"Add Statistic","sub_fields":[{"key":"field_sariyah_stat_number","label":"Number","name":"number","type":"text"},{"key":"field_sariyah_stat_label","label":"Label","name":"label","type":"text"}]}],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/event-stats"}]],
+  "active":true,
+  "show_in_rest":true
+}
