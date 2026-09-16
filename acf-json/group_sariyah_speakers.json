@@ -1,0 +1,13 @@
+{
+  "key":"group_sariyah_speakers",
+  "title":"Sariyah Speakers",
+  "fields":[
+    {"key":"field_sariyah_speakers_eyebrow","label":"Eyebrow","name":"eyebrow","type":"text","default_value":"EVENT SPEAKERS"},
+    {"key":"field_sariyah_speakers_title","label":"Title","name":"title","type":"text","default_value":"Our event speakers"},
+    {"key":"field_sariyah_speakers_description","label":"Description","name":"description","type":"textarea"},
+    {"key":"field_sariyah_speakers_items","label":"Speakers","name":"speakers","type":"repeater","layout":"block","button_label":"Add Speaker","sub_fields":[{"key":"field_sariyah_speaker_image","label":"Image","name":"image","type":"image","return_format":"array","preview_size":"medium"},{"key":"field_sariyah_speaker_name","label":"Name","name":"name","type":"text"},{"key":"field_sariyah_speaker_role","label":"Role","name":"role","type":"text"}]}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/speakers"}]],
+  "active":true,
+  "show_in_rest":true
+}
