@@ -1,0 +1,13 @@
+{
+  "key":"group_sariyah_features",
+  "title":"Sariyah Why Attend",
+  "fields":[
+    {"key":"field_sariyah_features_eyebrow","label":"Eyebrow","name":"eyebrow","type":"text","default_value":"JOIN OUR EVENT"},
+    {"key":"field_sariyah_features_title","label":"Title","name":"title","type":"text","default_value":"Why attend our event?"},
+    {"key":"field_sariyah_features_description","label":"Description","name":"description","type":"textarea"},
+    {"key":"field_sariyah_features_items","label":"Features","name":"features","type":"repeater","layout":"block","button_label":"Add Feature","sub_fields":[{"key":"field_sariyah_feature_title","label":"Title","name":"title","type":"text"},{"key":"field_sariyah_feature_description","label":"Description","name":"description","type":"textarea"}]}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/features"}]],
+  "active":true,
+  "show_in_rest":true
+}
