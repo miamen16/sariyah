@@ -1,0 +1,1 @@
+{"name":"sariyah/pricing","title":"Sariyah Pricing","description":"Event ticket pricing cards.","category":"sariyah","icon":"tickets-alt","keywords":["event","tickets","pricing"],"acf":{"mode":"preview","renderTemplate":"render.php"},"supports":{"anchor":true,"align":["wide","full"]}}
