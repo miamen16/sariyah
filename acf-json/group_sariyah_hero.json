@@ -9,7 +9,7 @@
     { "key": "field_sariyah_hero_primary", "label": "Primary Button", "name": "primary_button", "type": "link", "return_format": "array" },
     { "key": "field_sariyah_hero_secondary", "label": "Secondary Button", "name": "secondary_button", "type": "link", "return_format": "array" }
   ],
-  "location": [[{ "param": "block", "operator": "==", "value": "acf/sariyah-hero" }]],
+  "location": [[{ "param": "block", "operator": "==", "value": "sariyah/hero" }]],
   "active": true,
   "show_in_rest": true
 }
