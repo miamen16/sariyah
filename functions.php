@@ -42,11 +42,13 @@ function sariyah_register_block_category( array $categories ): array {
 }
 add_filter( 'block_categories_all', 'sariyah_register_block_category' );
 
-function sariyah_register_acf_blocks(): void {
-    if ( ! function_exists( 'acf_register_block_type' ) ) {
-        return;
-    }
-
+/**
+ * Register all Sariyah blocks from their block.json metadata.
+ *
+ * ACF 6+ integrates with block.json directly, so do not gate registration
+ * behind the legacy acf_register_block_type() function.
+ */
+function sariyah_register_blocks(): void {
     $blocks = array(
         'hero',
         'event-intro',
@@ -63,12 +65,15 @@ function sariyah_register_acf_blocks(): void {
 
     foreach ( $blocks as $block ) {
         $block_json = get_theme_file_path( 'blocks/' . $block . '/block.json' );
-        if ( file_exists( $block_json ) ) {
-            register_block_type( $block_json );
+
+        if ( ! file_exists( $block_json ) ) {
+            continue;
         }
+
+        register_block_type( $block_json );
     }
 }
-add_action( 'init', 'sariyah_register_acf_blocks' );
+add_action( 'init', 'sariyah_register_blocks' );
 
 function sariyah_enqueue_block_assets(): void {
     $blocks = array(
@@ -92,10 +97,10 @@ add_action( 'wp_enqueue_scripts', 'sariyah_enqueue_block_assets' );
 add_action( 'enqueue_block_editor_assets', 'sariyah_enqueue_block_assets' );
 
 function sariyah_acf_admin_notice(): void {
-    if ( function_exists( 'acf_register_block_type' ) || ! current_user_can( 'activate_plugins' ) ) {
+    if ( function_exists( 'get_field' ) || ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
 
-    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> Advanced Custom Fields (ACF) is required to edit the custom Sariyah event blocks.</p></div>';
+    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> Advanced Custom Fields (ACF) is required to edit the custom Sariyah event blocks. Please install and activate ACF 6+.</p></div>';
 }
 add_action( 'admin_notices', 'sariyah_acf_admin_notice' );
