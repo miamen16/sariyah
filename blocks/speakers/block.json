@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/speakers",
+  "title":"Sariyah Speakers",
+  "description":"Event speaker grid.",
+  "category":"sariyah",
+  "icon":"groups",
+  "keywords":["event","speakers","people"],
+  "acf":{"mode":"preview","renderTemplate":"render.php"},
+  "supports":{"align":["full"]},
+  "style":"file:./style.css"
+}
