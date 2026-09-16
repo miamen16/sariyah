@@ -16,6 +16,10 @@ function sariyah_setup(): void {
     add_editor_style( 'style.css' );
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'custom-logo' );
+    add_theme_support( 'wp-block-styles' );
+    add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' ) );
 }
 add_action( 'after_setup_theme', 'sariyah_setup' );
 
@@ -86,3 +90,12 @@ function sariyah_enqueue_block_assets(): void {
 }
 add_action( 'wp_enqueue_scripts', 'sariyah_enqueue_block_assets' );
 add_action( 'enqueue_block_editor_assets', 'sariyah_enqueue_block_assets' );
+
+function sariyah_acf_admin_notice(): void {
+    if ( function_exists( 'acf_register_block_type' ) || ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+
+    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> Advanced Custom Fields (ACF) is required to edit the custom Sariyah event blocks.</p></div>';
+}
+add_action( 'admin_notices', 'sariyah_acf_admin_notice' );
