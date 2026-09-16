@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/hero",
+  "title": "Sariyah Hero",
+  "description": "Hero section for the Sariyah event website.",
+  "category": "sariyah",
+  "icon": "slides",
+  "keywords": ["event", "hero", "conference"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "align": ["full"],
+    "jsx": true
+  },
+  "style": "file:./style.css"
+}
