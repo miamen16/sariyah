@@ -46,3 +46,24 @@ function sariyah_register_acf_blocks(): void {
     }
 }
 add_action( 'init', 'sariyah_register_acf_blocks' );
+
+function sariyah_enqueue_block_assets(): void {
+    $blocks = array(
+        'event-intro', 'event-stats', 'features', 'speakers', 'schedule',
+        'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
+    );
+
+    foreach ( $blocks as $block ) {
+        $file = get_theme_file_path( 'blocks/' . $block . '/style.css' );
+        if ( file_exists( $file ) ) {
+            wp_enqueue_style(
+                'sariyah-' . $block,
+                get_theme_file_uri( 'blocks/' . $block . '/style.css' ),
+                array(),
+                (string) filemtime( $file )
+            );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'sariyah_enqueue_block_assets' );
+add_action( 'enqueue_block_editor_assets', 'sariyah_enqueue_block_assets' );
