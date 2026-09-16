@@ -19,6 +19,25 @@ function sariyah_setup(): void {
 }
 add_action( 'after_setup_theme', 'sariyah_setup' );
 
+function sariyah_register_block_category( array $categories ): array {
+    foreach ( $categories as $category ) {
+        if ( isset( $category['slug'] ) && 'sariyah' === $category['slug'] ) {
+            return $categories;
+        }
+    }
+
+    array_unshift(
+        $categories,
+        array(
+            'slug'  => 'sariyah',
+            'title' => 'Sariyah',
+        )
+    );
+
+    return $categories;
+}
+add_filter( 'block_categories_all', 'sariyah_register_block_category' );
+
 function sariyah_register_acf_blocks(): void {
     if ( ! function_exists( 'acf_register_block_type' ) ) {
         return;
@@ -49,7 +68,7 @@ add_action( 'init', 'sariyah_register_acf_blocks' );
 
 function sariyah_enqueue_block_assets(): void {
     $blocks = array(
-        'event-intro', 'event-stats', 'features', 'speakers', 'schedule',
+        'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule',
         'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
     );
 
