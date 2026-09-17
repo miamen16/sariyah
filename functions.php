@@ -45,30 +45,30 @@ function sariyah_register_block_category( array $categories ): array {
 }
 add_filter( 'block_categories_all', 'sariyah_register_block_category' );
 
-function sariyah_get_block_names(): array {
-    return array(
-        'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule', 'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
-        'product-card', 'product-grid', 'product-categories', 'best-sellers', 'latest-products', 'sale-products', 'featured-products',
-        'product-carousel', 'category-carousel', 'promo-banner', 'trust-bar', 'newsletter', 'shop-products', 'product-filters', 'mini-cart', 'cart',
-        'single-product', 'checkout', 'my-account', 'related-products', 'upsells', 'cross-sells', 'product-search',
-    );
-}
-
+/**
+ * Register every block directory that contains a block.json file.
+ *
+ * This keeps block registration in sync automatically as new Sariyah blocks
+ * are added to the theme.
+ */
 function sariyah_register_blocks(): void {
-    foreach ( sariyah_get_block_names() as $block ) {
-        $block_json = get_theme_file_path( 'blocks/' . $block . '/block.json' );
-        if ( file_exists( $block_json ) ) {
-            register_block_type( $block_json );
-        }
+    $block_directories = glob( get_theme_file_path( 'blocks/*/block.json' ) );
+
+    if ( false === $block_directories ) {
+        return;
+    }
+
+    foreach ( $block_directories as $block_json ) {
+        register_block_type( dirname( $block_json ) );
     }
 }
 add_action( 'init', 'sariyah_register_blocks' );
 
 function sariyah_acf_admin_notice(): void {
-    if ( function_exists( 'get_field' ) || ! current_user_can( 'activate_plugins' ) ) {
+    if ( function_exists( 'acf' ) || ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
 
-    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> ACF 6+ is required for the custom Sariyah blocks.</p></div>';
+    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> ACF PRO 6+ is required for the custom Sariyah blocks.</p></div>';
 }
 add_action( 'admin_notices', 'sariyah_acf_admin_notice' );
