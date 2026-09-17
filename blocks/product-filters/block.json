@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/product-filters",
+  "title": "Sariyah Product Filters",
+  "description": "WooCommerce product category, price and stock filters.",
+  "category": "sariyah",
+  "icon": "filter",
+  "keywords": ["woocommerce", "filters", "products", "shop"],
+  "acf": {"mode": "preview", "renderTemplate": "render.php"},
+  "supports": {"anchor": true},
+  "style": "file:./style.css"
+}
