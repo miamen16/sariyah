@@ -68,9 +68,7 @@ ob_start();
         <?php if ( $product->get_sku() ) : ?>
           <span><?php esc_html_e( 'SKU:', 'sariyah' ); ?> <?php echo esc_html( $product->get_sku() ); ?></span>
         <?php endif; ?>
-        <?php if ( $product->get_stock_status() ) : ?>
-          <span><?php esc_html_e( 'Availability:', 'sariyah' ); ?> <?php echo esc_html( wc_get_stock_html( $product ) ); ?></span>
-        <?php endif; ?>
+        <?php echo wp_kses_post( wc_get_stock_html( $product ) ); ?>
       </div>
     </div>
   </div>
