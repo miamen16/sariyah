@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/best-sellers",
+  "title": "Sariyah Best Sellers",
+  "description": "Displays best-selling WooCommerce products dynamically.",
+  "category": "sariyah",
+  "icon": "chart-bar",
+  "keywords": ["woocommerce", "best sellers", "products"],
+  "acf": {"mode": "preview", "renderTemplate": "render.php"},
+  "supports": {"anchor": true, "align": ["wide", "full"]},
+  "style": "file:./style.css"
+}
