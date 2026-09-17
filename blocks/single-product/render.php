@@ -32,23 +32,25 @@ ob_start();
             $full_srcset = wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' );
             $full_sizes  = wp_get_attachment_image_sizes( $image_id, 'woocommerce_single' );
             ?>
-            <button type="button" class="sariyah-single-product__thumb" role="listitem" aria-label="<?php echo esc_attr( sprintf( __( 'View product image %d', 'sariyah' ), $index + 2 ) ); ?>" aria-pressed="false">
-              <?php
-              echo wp_kses_post(
-                  wp_get_attachment_image(
-                      $image_id,
-                      'woocommerce_thumbnail',
-                      false,
-                      array(
-                          'loading'         => 'lazy',
-                          'data-full-image' => $full_src,
-                          'data-full-srcset' => $full_srcset ?: '',
-                          'data-full-sizes' => $full_sizes ?: '',
-                      )
-                  )
-              );
-              ?>
-            </button>
+            <div role="listitem">
+              <button type="button" class="sariyah-single-product__thumb" aria-label="<?php echo esc_attr( sprintf( __( 'View product image %d', 'sariyah' ), $index + 2 ) ); ?>" aria-pressed="false">
+                <?php
+                echo wp_kses_post(
+                    wp_get_attachment_image(
+                        $image_id,
+                        'woocommerce_thumbnail',
+                        false,
+                        array(
+                            'loading'          => 'lazy',
+                            'data-full-image'  => $full_src,
+                            'data-full-srcset' => $full_srcset ?: '',
+                            'data-full-sizes'  => $full_sizes ?: '',
+                        )
+                    )
+                );
+                ?>
+              </button>
+            </div>
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
