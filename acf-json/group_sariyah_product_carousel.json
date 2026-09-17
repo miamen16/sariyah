@@ -1,0 +1,12 @@
+{
+  "key":"group_sariyah_product_carousel",
+  "title":"Sariyah Product Carousel",
+  "fields":[
+    {"key":"field_sariyah_carousel_title","label":"Title","name":"title","type":"text","default_value":"Shop our products"},
+    {"key":"field_sariyah_carousel_description","label":"Description","name":"description","type":"textarea","rows":3},
+    {"key":"field_sariyah_carousel_count","label":"Products","name":"count","type":"number","default_value":10,"min":2,"max":20},
+    {"key":"field_sariyah_carousel_source","label":"Source","name":"source","type":"select","choices":{"latest":"Latest","bestselling":"Best sellers","featured":"Featured","sale":"On sale"},"default_value":"latest","return_format":"value"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/product-carousel"}]],
+  "active":true
+}
