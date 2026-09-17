@@ -23,6 +23,7 @@ function sariyah_render_product_card( WC_Product $product ): void {
     $attributes = '';
 
     if ( $product->is_purchasable() && $product->is_in_stock() && $product->is_type( 'simple' ) ) {
+        wp_enqueue_script( 'wc-add-to-cart' );
         $url        = $product->add_to_cart_url();
         $label      = $product->add_to_cart_text();
         $classes   .= ' add_to_cart_button ajax_add_to_cart';
@@ -50,3 +51,22 @@ function sariyah_render_product_card( WC_Product $product ): void {
     </article>
     <?php
 }
+
+function sariyah_refresh_mini_cart_fragment( array $fragments ): array {
+    if ( ! function_exists( 'render_block' ) || ! class_exists( 'WP_Block_Type_Registry' ) ) {
+        return $fragments;
+    }
+
+    $block = array(
+        'blockName'    => 'sariyah/mini-cart',
+        'attrs'        => array(),
+        'innerBlocks'  => array(),
+        'innerHTML'    => '',
+        'innerContent' => array(),
+    );
+
+    $fragments['.sariyah-mini-cart'] = render_block( $block );
+
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'sariyah_refresh_mini_cart_fragment' );
