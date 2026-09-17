@@ -64,6 +64,38 @@ function sariyah_register_blocks(): void {
 }
 add_action( 'init', 'sariyah_register_blocks' );
 
+/**
+ * Load Sariyah block styles explicitly.
+ *
+ * Block metadata still declares each style file, but explicit loading keeps
+ * custom ACF/server-rendered blocks styled reliably across frontend, template
+ * rendering and the block editor.
+ */
+function sariyah_enqueue_block_styles(): void {
+    $block_styles = glob( get_theme_file_path( 'blocks/*/style.css' ) );
+
+    if ( false === $block_styles ) {
+        return;
+    }
+
+    foreach ( $block_styles as $style_file ) {
+        $block_directory = dirname( $style_file );
+        $block_slug      = basename( $block_directory );
+        $handle          = 'sariyah-block-' . sanitize_key( $block_slug );
+        $relative_path   = 'blocks/' . $block_slug . '/style.css';
+        $version         = file_exists( $style_file ) ? (string) filemtime( $style_file ) : null;
+
+        wp_enqueue_style(
+            $handle,
+            get_theme_file_uri( $relative_path ),
+            array(),
+            $version
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'sariyah_enqueue_block_styles', 20 );
+add_action( 'enqueue_block_editor_assets', 'sariyah_enqueue_block_styles', 20 );
+
 function sariyah_acf_admin_notice(): void {
     if ( function_exists( 'acf' ) || ! current_user_can( 'activate_plugins' ) ) {
         return;
