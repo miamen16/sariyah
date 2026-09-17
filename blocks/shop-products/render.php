@@ -94,11 +94,17 @@ if ( 'instock' === $filter_stock ) {
     $preserved_args['stock'] = 'instock';
 }
 if ( $search_term ) {
-    $preserved_args['s'] = $search_term;
+    $preserved_args['s']        = $search_term;
     $preserved_args['post_type'] = 'product';
 }
 
-$current_url = remove_query_arg( array( 'orderby', 'order', 'paged', 'page' ) );
+// Build a clean base URL so hidden GET fields are not duplicated in the sorting form.
+$current_url = remove_query_arg(
+    array_merge(
+        array( 'orderby', 'order', 'paged', 'page' ),
+        array_keys( $preserved_args )
+    )
+);
 ?>
 <section class="sariyah-shop-products">
   <div class="sariyah-container">
