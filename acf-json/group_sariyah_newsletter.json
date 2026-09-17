@@ -1,0 +1,12 @@
+{
+  "key":"group_sariyah_newsletter",
+  "title":"Sariyah Newsletter",
+  "fields":[
+    {"key":"field_sariyah_newsletter_title","label":"Title","name":"title","type":"text","default_value":"Stay in the loop"},
+    {"key":"field_sariyah_newsletter_text","label":"Text","name":"text","type":"textarea","rows":3},
+    {"key":"field_sariyah_newsletter_action","label":"Form Action URL","name":"action_url","type":"url","instructions":"Use the subscription endpoint provided by your email marketing service."},
+    {"key":"field_sariyah_newsletter_button","label":"Button Text","name":"button_text","type":"text","default_value":"Subscribe"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/newsletter"}]],
+  "active":true
+}
