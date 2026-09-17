@@ -3,7 +3,7 @@ Theme Name: Sariyah
 Theme URI: https://sariyah.co/
 Author: MI Plugins
 Author URI: https://github.com/miamen16
-Description: A custom block-based WordPress theme for Sariyah, inspired by the Eventum event layout and rebuilt for Gutenberg and ACF.
+Description: A custom block-based WooCommerce theme for Sariyah, built for Gutenberg and ACF.
 Version: 0.1.0
 Requires at least: 6.5
 Requires PHP: 7.4
@@ -17,3 +17,10 @@ Text Domain: sariyah
 html { scroll-behavior: smooth; }
 body { margin: 0; }
 img { max-width: 100%; height: auto; }
+
+.sariyah-container { width: min(100% - 32px, var(--wp--custom--container-width)); margin-inline: auto; }
+.sariyah-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border-radius: 8px; text-decoration: none; cursor: pointer; }
+
+@media(max-width:700px){
+  .sariyah-container { width: min(100% - 24px, var(--wp--custom--container-width)); }
+}
