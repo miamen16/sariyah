@@ -1,0 +1,9 @@
+{
+  "key":"group_sariyah_cross_sells",
+  "title":"Sariyah Cross-sells",
+  "fields":[
+    {"key":"field_sariyah_cross_sells_title","label":"Title","name":"title","type":"text","default_value":"You may also need"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/cross-sells"}]],
+  "active":true
+}
