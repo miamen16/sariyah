@@ -32,8 +32,12 @@
         }
         mainImage.alt = alt;
 
-        thumbnails.forEach((item) => item.classList.remove('is-active'));
+        thumbnails.forEach((item) => {
+          item.classList.remove('is-active');
+          item.setAttribute('aria-pressed', 'false');
+        });
         button.classList.add('is-active');
+        button.setAttribute('aria-pressed', 'true');
       });
     });
   };
