@@ -26,8 +26,28 @@ ob_start();
       <?php if ( $gallery_ids ) : ?>
         <div class="sariyah-single-product__thumbs">
           <?php foreach ( $gallery_ids as $image_id ) : ?>
+            <?php
+            $full_image = wp_get_attachment_image_src( $image_id, 'woocommerce_single' );
+            $full_src   = $full_image ? $full_image[0] : wp_get_attachment_url( $image_id );
+            $full_srcset = wp_get_attachment_image_srcset( $image_id, 'woocommerce_single' );
+            $full_sizes  = wp_get_attachment_image_sizes( $image_id, 'woocommerce_single' );
+            ?>
             <button type="button" class="sariyah-single-product__thumb" aria-label="<?php echo esc_attr( sprintf( __( 'View image %d', 'sariyah' ), $image_id ) ); ?>">
-              <?php echo wp_kses_post( wp_get_attachment_image( $image_id, 'woocommerce_thumbnail', false, array( 'loading' => 'lazy' ) ) ); ?>
+              <?php
+              echo wp_kses_post(
+                  wp_get_attachment_image(
+                      $image_id,
+                      'woocommerce_thumbnail',
+                      false,
+                      array(
+                          'loading'        => 'lazy',
+                          'data-full-image' => $full_src,
+                          'data-full-srcset' => $full_srcset ?: '',
+                          'data-full-sizes'  => $full_sizes ?: '',
+                      )
+                  )
+              );
+              ?>
             </button>
           <?php endforeach; ?>
         </div>
