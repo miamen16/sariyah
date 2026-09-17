@@ -3,19 +3,20 @@
   "version": 3,
   "settings": {
     "appearanceTools": true,
-    "layout": {
-      "contentSize": "1200px",
-      "wideSize": "1400px"
-    },
+    "layout": { "contentSize": "1200px", "wideSize": "1400px" },
     "color": {
       "defaultPalette": false,
       "palette": [
-        { "slug": "primary", "color": "#e51f2b", "name": "Primary" },
-        { "slug": "secondary", "color": "#111827", "name": "Secondary" },
-        { "slug": "accent", "color": "#f5b700", "name": "Accent" },
-        { "slug": "surface", "color": "#f7f7f8", "name": "Surface" },
-        { "slug": "white", "color": "#ffffff", "name": "White" },
-        { "slug": "black", "color": "#111111", "name": "Black" }
+        { "slug": "primary", "color": "#8b1e2d", "name": "Burgundy" },
+        { "slug": "primary-dark", "color": "#6f1724", "name": "Burgundy Dark" },
+        { "slug": "secondary", "color": "#2d211c", "name": "Dark Brown" },
+        { "slug": "accent", "color": "#b58a3b", "name": "Gold" },
+        { "slug": "cream", "color": "#faf9f5", "name": "Cream" },
+        { "slug": "sand", "color": "#f5eee5", "name": "Sand" },
+        { "slug": "ink", "color": "#26231f", "name": "Ink" },
+        { "slug": "muted", "color": "#6c665e", "name": "Muted" },
+        { "slug": "border", "color": "#eee8df", "name": "Border" },
+        { "slug": "white", "color": "#ffffff", "name": "White" }
       ],
       "gradients": []
     },
@@ -43,23 +44,18 @@
     }
   },
   "styles": {
-    "color": {
-      "background": "#ffffff",
-      "text": "#111827"
-    },
-    "typography": {
-      "fontFamily": "var:preset|font-family|body",
-      "lineHeight": "1.6"
-    },
+    "color": { "background": "#ffffff", "text": "#26231f" },
+    "typography": { "fontFamily": "var:preset|font-family|body", "lineHeight": "1.6" },
     "elements": {
       "heading": {
-        "typography": { "fontFamily": "var:preset|font-family|heading", "fontWeight": "700", "lineHeight": "1.15" }
+        "typography": { "fontFamily": "var:preset|font-family|heading", "fontWeight": "700", "lineHeight": "1.15" },
+        "color": { "text": "var:preset|color|ink" }
       },
       "button": {
-        "border": { "radius": "4px" },
+        "border": { "radius": "7px" },
         "color": { "background": "var:preset|color|primary", "text": "#ffffff" },
         "spacing": { "padding": { "top": "0.9rem", "bottom": "0.9rem", "left": "1.5rem", "right": "1.5rem" } },
-        "typography": { "fontWeight": "600" }
+        "typography": { "fontWeight": "700" }
       }
     }
   }
