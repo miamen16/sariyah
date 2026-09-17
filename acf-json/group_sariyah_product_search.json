@@ -1,0 +1,9 @@
+{
+  "key":"group_sariyah_product_search",
+  "title":"Sariyah Product Search",
+  "fields":[
+    {"key":"field_sariyah_product_search_placeholder","label":"Placeholder","name":"placeholder","type":"text","default_value":"Search products…"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/product-search"}]],
+  "active":true
+}
