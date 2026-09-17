@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/shop-products",
+  "title":"Sariyah Shop Products",
+  "description":"WooCommerce shop and product category listing.",
+  "category":"sariyah",
+  "icon":"store",
+  "keywords":["woocommerce","shop","products","archive"],
+  "acf":{"mode":"preview","renderTemplate":"render.php"},
+  "supports":{"anchor":true,"align":["wide","full"]},
+  "style":"file:./style.css"
+}
