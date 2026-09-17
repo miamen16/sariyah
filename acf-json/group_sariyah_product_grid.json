@@ -1,0 +1,14 @@
+{
+  "key": "group_sariyah_product_grid",
+  "title": "Sariyah Product Grid",
+  "fields": [
+    {"key":"field_sariyah_product_grid_title","label":"Title","name":"title","type":"text","default_value":"Our products"},
+    {"key":"field_sariyah_product_grid_description","label":"Description","name":"description","type":"textarea","rows":3},
+    {"key":"field_sariyah_product_grid_source","label":"Source","name":"source","type":"select","choices":{"latest":"Latest","featured":"Featured","bestselling":"Best sellers","sale":"On sale"},"default_value":"latest","return_format":"value"},
+    {"key":"field_sariyah_product_grid_count","label":"Products","name":"count","type":"number","default_value":8,"min":1,"max":24},
+    {"key":"field_sariyah_product_grid_columns","label":"Columns","name":"columns","type":"number","default_value":4,"min":2,"max":6},
+    {"key":"field_sariyah_product_grid_category","label":"Category","name":"category","type":"taxonomy","taxonomy":"product_cat","field_type":"select","return_format":"object","allow_null":1}
+  ],
+  "location": [[{"param":"block","operator":"==","value":"sariyah/product-grid"}]],
+  "active": true
+}
