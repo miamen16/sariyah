@@ -1,13 +1,13 @@
 # Sariyah WordPress Theme
 
-Custom block-based WordPress theme for a WooCommerce storefront, using Gutenberg blocks and ACF for editorial controls.
+Custom block-based WordPress theme for a WooCommerce storefront, using Gutenberg blocks and ACF PRO for editorial controls.
 
 ## Stack
 
 - WordPress block theme / Full Site Editing
 - Gutenberg
 - WooCommerce
-- Advanced Custom Fields (ACF)
+- Advanced Custom Fields PRO
 - ACF JSON field groups
 - Server-rendered custom blocks
 - `theme.json` design system
@@ -38,7 +38,7 @@ The repository also contains the original Sariyah content blocks, including Hero
 - WordPress 6.6+
 - PHP 7.4+
 - WooCommerce
-- Advanced Custom Fields 6+
+- Advanced Custom Fields PRO 6+
 
 ## Editing the homepage
 
@@ -47,13 +47,19 @@ The homepage is assembled from the `sariyah/homepage` block pattern and rendered
 The default storefront flow is:
 
 1. Hero
-2. Product Categories
-3. Best Sellers
-4. Latest Products
-5. Blog / latest news
+2. Trust Bar
+3. Product Categories
+4. Best Sellers
+5. Promo Banner
+6. Featured Products
+7. Product Carousel
+8. Sale Products
+9. Latest Products
+10. Newsletter
+11. Latest News
 
-Product and category data comes from WooCommerce rather than ACF repeaters. ACF is used for block-level editorial settings such as headings, descriptions, item counts and columns.
+Product and category data comes from WooCommerce rather than ACF repeaters. ACF PRO is used for block-level editorial settings such as headings, descriptions, item counts and columns.
 
 ## Development notes
 
-Custom blocks are registered from their `block.json` metadata files. ACF JSON field groups are stored in `acf-json/` for version control and synchronization.
+Custom blocks are registered automatically from every `blocks/*/block.json` metadata file. ACF JSON field groups are stored in `acf-json/` for version control and synchronization.
