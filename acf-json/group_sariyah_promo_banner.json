@@ -1,0 +1,12 @@
+{
+  "key":"group_sariyah_promo_banner",
+  "title":"Sariyah Promo Banner",
+  "fields":[
+    {"key":"field_sariyah_promo_title","label":"Title","name":"title","type":"text","default_value":"Discover something new","required":1},
+    {"key":"field_sariyah_promo_text","label":"Text","name":"text","type":"textarea","rows":3},
+    {"key":"field_sariyah_promo_button","label":"Button","name":"button","type":"link","return_format":"array"},
+    {"key":"field_sariyah_promo_image","label":"Background Image","name":"image","type":"image","return_format":"id","preview_size":"medium","library":"all"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/promo-banner"}]],
+  "active":true
+}
