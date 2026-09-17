@@ -1,16 +1,27 @@
 <?php
 /** WooCommerce single product layout. */
-if ( ! function_exists( 'wc_get_product' ) ) { return ''; }
+if ( ! function_exists( 'wc_get_product' ) ) {
+    return;
+}
 
 $product = wc_get_product( get_the_ID() );
-if ( ! $product ) { return ''; }
+if ( ! $product instanceof WC_Product ) {
+    return;
+}
 
 ob_start();
 ?>
 <section class="sariyah-single-product">
   <div class="sariyah-container sariyah-single-product__layout">
     <div class="sariyah-single-product__gallery">
-      <?php echo wp_kses_post( $product->get_image( 'woocommerce_single' ) ); ?>
+      <?php
+      $image_id = $product->get_image_id();
+      if ( $image_id ) {
+          echo wp_kses_post( wp_get_attachment_image( $image_id, 'woocommerce_single' ) );
+      } else {
+          echo wp_kses_post( wc_placeholder_img( 'woocommerce_single' ) );
+      }
+      ?>
       <?php $gallery_ids = $product->get_gallery_image_ids(); ?>
       <?php if ( $gallery_ids ) : ?>
         <div class="sariyah-single-product__thumbs">
@@ -23,10 +34,16 @@ ob_start();
       <?php endif; ?>
     </div>
     <div class="sariyah-single-product__summary">
-      <?php if ( $product->get_average_rating() > 0 ) : ?><div class="sariyah-single-product__rating"><?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() ) ); ?></div><?php endif; ?>
+      <?php if ( $product->get_average_rating() > 0 ) : ?>
+        <div class="sariyah-single-product__rating" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'sariyah' ), $product->get_average_rating() ) ); ?>">
+          <?php echo wp_kses_post( wc_get_rating_html( $product->get_average_rating(), $product->get_rating_count() ) ); ?>
+        </div>
+      <?php endif; ?>
       <h1><?php echo esc_html( $product->get_name() ); ?></h1>
       <div class="sariyah-single-product__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
-      <?php if ( $product->get_short_description() ) : ?><div class="sariyah-single-product__excerpt"><?php echo wp_kses_post( wpautop( $product->get_short_description() ) ); ?></div><?php endif; ?>
+      <?php if ( $product->get_short_description() ) : ?>
+        <div class="sariyah-single-product__excerpt"><?php echo wp_kses_post( wpautop( $product->get_short_description() ) ); ?></div>
+      <?php endif; ?>
       <?php if ( $product->is_purchasable() ) : ?>
         <div class="sariyah-single-product__cart">
           <?php
@@ -47,10 +64,19 @@ ob_start();
           ?>
         </div>
       <?php endif; ?>
-      <div class="sariyah-single-product__meta"><span><?php esc_html_e( 'SKU:', 'sariyah' ); ?> <?php echo esc_html( $product->get_sku() ?: '—' ); ?></span></div>
+      <div class="sariyah-single-product__meta">
+        <?php if ( $product->get_sku() ) : ?>
+          <span><?php esc_html_e( 'SKU:', 'sariyah' ); ?> <?php echo esc_html( $product->get_sku() ); ?></span>
+        <?php endif; ?>
+        <?php if ( $product->get_stock_status() ) : ?>
+          <span><?php esc_html_e( 'Availability:', 'sariyah' ); ?> <?php echo esc_html( wc_get_stock_html( $product ) ); ?></span>
+        <?php endif; ?>
+      </div>
     </div>
   </div>
-  <div class="sariyah-container sariyah-single-product__description"><?php echo wp_kses_post( apply_filters( 'the_content', $product->get_description() ) ); ?></div>
+  <div class="sariyah-container sariyah-single-product__description">
+    <?php echo wp_kses_post( apply_filters( 'the_content', $product->get_description() ) ); ?>
+  </div>
 </section>
 <?php
 return ob_get_clean();
