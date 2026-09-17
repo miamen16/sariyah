@@ -1,10 +1,28 @@
-<!-- wp:group {"align":"full","className":"sariyah-header","style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem","left":"var:preset|spacing|medium","right":"var:preset|spacing|medium"}}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","className":"sariyah-topbar","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull sariyah-topbar">
+  <!-- wp:paragraph {"align":"center"} -->
+  <p class="has-text-align-center">🚚 توصيل سريع وعروض حصرية على منتجاتنا</p>
+  <!-- /wp:paragraph -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"full","className":"sariyah-header","style":{"spacing":{"padding":{"top":"14px","bottom":"14px","left":"16px","right":"16px"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull sariyah-header">
-    <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
+  <!-- wp:group {"className":"sariyah-header__inner","layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
+  <div class="wp-block-group sariyah-header__inner">
+    <!-- wp:group {"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"}} -->
     <div class="wp-block-group">
-        <!-- wp:site-logo {"width":150} /-->
-        <!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right"}} /-->
+      <!-- wp:site-logo {"width":150} /-->
+      <!-- wp:navigation {"overlayMenu":"mobile","layout":{"type":"flex","justifyContent":"right"}} /-->
     </div>
     <!-- /wp:group -->
+    <!-- wp:group {"className":"sariyah-header__actions","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+    <div class="wp-block-group sariyah-header__actions">
+      <!-- wp:sariyah/product-search /-->
+      <!-- wp:sariyah/mini-cart /-->
+    </div>
+    <!-- /wp:group -->
+  </div>
+  <!-- /wp:group -->
 </div>
 <!-- /wp:group -->
