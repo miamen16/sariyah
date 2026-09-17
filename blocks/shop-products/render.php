@@ -21,6 +21,7 @@ $filter_category = isset( $_GET['product_cat'] ) ? sanitize_title( wp_unslash( $
 $filter_stock    = isset( $_GET['stock'] ) ? sanitize_key( wp_unslash( $_GET['stock'] ) ) : '';
 $filter_min      = isset( $_GET['min_price'] ) ? wc_format_decimal( wp_unslash( $_GET['min_price'] ) ) : '';
 $filter_max      = isset( $_GET['max_price'] ) ? wc_format_decimal( wp_unslash( $_GET['max_price'] ) ) : '';
+$search_term     = is_search() && 'product' === get_query_var( 'post_type' ) ? sanitize_text_field( get_search_query() ) : '';
 
 if ( '' !== $filter_min && (float) $filter_min < 0 ) {
     $filter_min = '0';
@@ -42,6 +43,11 @@ $args = array(
     'orderby'  => $orderby,
     'order'    => $order,
 );
+
+if ( $search_term ) {
+    $args['s'] = $search_term;
+    $title = $title ?: sprintf( __( 'Search results for: %s', 'sariyah' ), $search_term );
+}
 
 if ( $filter_category ) {
     $args['category'] = array( $filter_category );
@@ -86,6 +92,10 @@ if ( '' !== $filter_max ) {
 }
 if ( 'instock' === $filter_stock ) {
     $preserved_args['stock'] = 'instock';
+}
+if ( $search_term ) {
+    $preserved_args['s'] = $search_term;
+    $preserved_args['post_type'] = 'product';
 }
 
 $current_url = remove_query_arg( array( 'orderby', 'order', 'paged', 'page' ) );
