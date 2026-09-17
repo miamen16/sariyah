@@ -1,6 +1,6 @@
 (() => {
   const initGallery = (root) => {
-    const mainImage = root.querySelector('.sariyah-single-product__gallery > img');
+    const mainImage = root.querySelector('.sariyah-single-product__main-image > img');
     const thumbnails = root.querySelectorAll('.sariyah-single-product__thumb');
 
     if (!mainImage || !thumbnails.length) {
