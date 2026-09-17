@@ -1,0 +1,12 @@
+{
+  "key":"group_sariyah_featured_products",
+  "title":"Sariyah Featured Products",
+  "fields":[
+    {"key":"field_sariyah_featured_title","label":"Title","name":"title","type":"text","default_value":"Featured products"},
+    {"key":"field_sariyah_featured_description","label":"Description","name":"description","type":"textarea","rows":3},
+    {"key":"field_sariyah_featured_count","label":"Products","name":"count","type":"number","default_value":8,"min":1,"max":24},
+    {"key":"field_sariyah_featured_columns","label":"Columns","name":"columns","type":"number","default_value":4,"min":2,"max":6}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/featured-products"}]],
+  "active":true
+}
