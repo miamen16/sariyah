@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/cart",
+  "title":"Sariyah Cart",
+  "description":"WooCommerce cart powered by the native cart flow.",
+  "category":"sariyah",
+  "icon":"cart",
+  "keywords":["woocommerce","cart","checkout"],
+  "supports":{"anchor":true,"align":["wide","full"]},
+  "render":"render.php",
+  "style":"file:./style.css"
+}
