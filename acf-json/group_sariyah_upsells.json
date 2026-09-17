@@ -1,0 +1,9 @@
+{
+  "key":"group_sariyah_upsells",
+  "title":"Sariyah Upsells",
+  "fields":[
+    {"key":"field_sariyah_upsells_title","label":"Title","name":"title","type":"text","default_value":"You may also like"}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/upsells"}]],
+  "active":true
+}
