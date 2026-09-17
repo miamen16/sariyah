@@ -43,6 +43,13 @@ $base_url = function_exists( 'is_product_category' ) && is_product_category() ? 
 if ( is_wp_error( $base_url ) ) {
     $base_url = wc_get_page_permalink( 'shop' );
 }
+
+$reset_args = array();
+if ( $search ) {
+    $reset_args['s'] = $search;
+    $reset_args['post_type'] = 'product';
+}
+$reset_url = add_query_arg( $reset_args, $base_url );
 ?>
 <aside class="sariyah-product-filters" aria-label="<?php esc_attr_e( 'Product filters', 'sariyah' ); ?>">
     <form method="get" action="<?php echo esc_url( $base_url ); ?>">
@@ -80,6 +87,6 @@ if ( is_wp_error( $base_url ) ) {
         </fieldset>
 
         <button type="submit"><?php esc_html_e( 'Apply filters', 'sariyah' ); ?></button>
-        <a class="sariyah-product-filters__reset" href="<?php echo esc_url( $base_url ); ?>"><?php esc_html_e( 'Reset', 'sariyah' ); ?></a>
+        <a class="sariyah-product-filters__reset" href="<?php echo esc_url( $reset_url ); ?>"><?php esc_html_e( 'Reset', 'sariyah' ); ?></a>
     </form>
 </aside>
