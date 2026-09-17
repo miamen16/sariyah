@@ -1,7 +1,0 @@
-{
-  "key":"group_sariyah_product_card",
-  "title":"Sariyah Product Card",
-  "fields":[{"key":"field_sariyah_product_card_product","label":"Product","name":"product","type":"post_object","post_type":["product"],"return_format":"id","required":1}],
-  "location":[[{"param":"block","operator":"==","value":"sariyah/product-card"}]],
-  "active":true
-}
