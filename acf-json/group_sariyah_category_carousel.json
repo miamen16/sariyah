@@ -1,0 +1,10 @@
+{
+  "key":"group_sariyah_category_carousel",
+  "title":"Sariyah Category Carousel",
+  "fields":[
+    {"key":"field_sariyah_category_carousel_title","label":"Title","name":"title","type":"text","default_value":"Explore categories"},
+    {"key":"field_sariyah_category_carousel_count","label":"Categories","name":"count","type":"number","default_value":10,"min":2,"max":20}
+  ],
+  "location":[[{"param":"block","operator":"==","value":"sariyah/category-carousel"}]],
+  "active":true
+}
