@@ -24,7 +24,9 @@ function sariyah_setup(): void {
 add_action( 'after_setup_theme', 'sariyah_setup' );
 
 function sariyah_register_block_category( array $categories ): array {
-    foreach ( $categories as $category ) { if ( isset( $category['slug'] ) && 'sariyah' === $category['slug'] ) { return $categories; } }
+    foreach ( $categories as $category ) {
+        if ( isset( $category['slug'] ) && 'sariyah' === $category['slug'] ) { return $categories; }
+    }
     array_unshift( $categories, array( 'slug' => 'sariyah', 'title' => 'Sariyah' ) );
     return $categories;
 }
@@ -34,7 +36,7 @@ function sariyah_get_block_names(): array {
     return array(
         'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule', 'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
         'product-card', 'product-grid', 'product-categories', 'best-sellers', 'latest-products', 'sale-products', 'featured-products',
-        'product-carousel', 'category-carousel', 'promo-banner', 'trust-bar', 'newsletter', 'shop-products', 'mini-cart', 'cart',
+        'product-carousel', 'category-carousel', 'promo-banner', 'trust-bar', 'newsletter', 'shop-products', 'product-filters', 'mini-cart', 'cart',
         'single-product', 'checkout', 'my-account', 'related-products', 'upsells', 'cross-sells', 'product-search',
     );
 }
