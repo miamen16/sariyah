@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/single-product",
+  "title":"Sariyah Single Product",
+  "description":"WooCommerce single product layout.",
+  "category":"sariyah",
+  "icon":"products",
+  "keywords":["woocommerce","product","single product"],
+  "supports":{"anchor":true,"align":["wide","full"]},
+  "render":"render.php",
+  "style":"file:./style.css"
+}
