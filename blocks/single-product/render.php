@@ -30,15 +30,19 @@ ob_start();
       <?php if ( $product->is_purchasable() ) : ?>
         <div class="sariyah-single-product__cart">
           <?php
-do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
-          if ( 'simple' === $product->get_type() ) {
-              woocommerce_simple_add_to_cart();
-          } elseif ( 'variable' === $product->get_type() ) {
-              woocommerce_variable_add_to_cart();
-          } elseif ( 'grouped' === $product->get_type() ) {
-              woocommerce_grouped_add_to_cart();
-          } elseif ( 'external' === $product->get_type() ) {
-              woocommerce_external_add_to_cart();
+          switch ( $product->get_type() ) {
+              case 'simple':
+                  woocommerce_simple_add_to_cart();
+                  break;
+              case 'variable':
+                  woocommerce_variable_add_to_cart();
+                  break;
+              case 'grouped':
+                  woocommerce_grouped_add_to_cart();
+                  break;
+              case 'external':
+                  woocommerce_external_add_to_cart();
+                  break;
           }
           ?>
         </div>
