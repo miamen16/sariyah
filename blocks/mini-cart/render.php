@@ -1,6 +1,10 @@
 <?php
 /** WooCommerce mini cart. */
-if ( ! function_exists( 'WC' ) || ! WC()->cart ) { return; }
+if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+    return;
+}
+
+wp_enqueue_script( 'wc-cart-fragments' );
 
 $cart = WC()->cart;
 ?>
@@ -12,7 +16,9 @@ $cart = WC()->cart;
     <ul class="sariyah-mini-cart__items">
       <?php foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) :
         $product = $cart_item['data'];
-        if ( ! $product || ! $product->exists() ) { continue; }
+        if ( ! $product || ! $product->exists() ) {
+            continue;
+        }
       ?>
         <li class="sariyah-mini-cart__item">
           <a href="<?php echo esc_url( $product->get_permalink( $cart_item ) ); ?>" class="sariyah-mini-cart__image"><?php echo wp_kses_post( $product->get_image( 'woocommerce_thumbnail' ) ); ?></a>
