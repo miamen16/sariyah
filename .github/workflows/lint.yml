@@ -19,7 +19,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          tools: composer
 
       - name: PHP syntax check
         run: |
@@ -32,3 +31,10 @@ jobs:
           find . -type f -name '*.json' -not -path './vendor/*' -print0 | while IFS= read -r -d '' file; do
             php -r 'json_decode(file_get_contents($argv[1]), true, 512, JSON_THROW_ON_ERROR);' "$file"
           done
+
+      - name: JavaScript syntax check
+        run: |
+          set -e
+          if command -v node >/dev/null 2>&1; then
+            find . -type f -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -r -n1 node --check
+          fi
