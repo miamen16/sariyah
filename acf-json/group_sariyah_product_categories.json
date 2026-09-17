@@ -1,0 +1,12 @@
+{
+  "key": "group_sariyah_product_categories",
+  "title": "Sariyah Product Categories",
+  "fields": [
+    {"key":"field_sariyah_product_categories_title","label":"Title","name":"title","type":"text","default_value":"Shop by category"},
+    {"key":"field_sariyah_product_categories_description","label":"Description","name":"description","type":"textarea","rows":3},
+    {"key":"field_sariyah_product_categories_count","label":"Categories","name":"count","type":"number","default_value":8,"min":1,"max":24},
+    {"key":"field_sariyah_product_categories_columns","label":"Columns","name":"columns","type":"number","default_value":4,"min":2,"max":6}
+  ],
+  "location": [[{"param":"block","operator":"==","value":"sariyah/product-categories"}]],
+  "active": true
+}
