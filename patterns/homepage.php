@@ -9,9 +9,15 @@
  */
 ?>
 <!-- wp:sariyah/hero /-->
+<!-- wp:sariyah/trust-bar /-->
 <!-- wp:sariyah/product-categories /-->
 <!-- wp:sariyah/best-sellers /-->
+<!-- wp:sariyah/promo-banner /-->
+<!-- wp:sariyah/featured-products /-->
+<!-- wp:sariyah/product-carousel /-->
+<!-- wp:sariyah/sale-products /-->
 <!-- wp:sariyah/latest-products /-->
+<!-- wp:sariyah/newsletter /-->
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"5rem","bottom":"5rem","left":"1rem","right":"1rem"}}}} -->
 <div class="wp-block-group alignfull" style="padding-top:5rem;padding-right:1rem;padding-bottom:5rem;padding-left:1rem"><div class="wp-block-group__inner-container">
 <!-- wp:heading {"level":2} -->
