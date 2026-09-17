@@ -5,7 +5,7 @@
  * @package Sariyah
  */
 
-if ( ! function_exists( 'wc_get_product' ) ) {
+if ( ! function_exists( 'wc_get_product' ) || ! class_exists( 'WC_Product' ) ) {
     return;
 }
 
@@ -14,8 +14,12 @@ if ( ! $product instanceof WC_Product ) {
     return;
 }
 
-$image_id = $product->get_image_id();
+$image_id    = $product->get_image_id();
 $gallery_ids = $product->get_gallery_image_ids();
+
+if ( $product->is_purchasable() && 'variable' === $product->get_type() ) {
+    wp_enqueue_script( 'wc-add-to-cart-variation' );
+}
 ?>
 <section class="sariyah-single-product">
   <div class="sariyah-container sariyah-single-product__layout">
