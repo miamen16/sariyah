@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+require_once get_theme_file_path( 'inc/woocommerce.php' );
+
 function sariyah_setup(): void {
     add_theme_support( 'editor-styles' );
     add_editor_style( 'style.css' );
@@ -30,66 +32,36 @@ function sariyah_register_block_category( array $categories ): array {
         }
     }
 
-    array_unshift(
-        $categories,
-        array(
-            'slug'  => 'sariyah',
-            'title' => 'Sariyah',
-        )
-    );
-
+    array_unshift( $categories, array( 'slug' => 'sariyah', 'title' => 'Sariyah' ) );
     return $categories;
 }
 add_filter( 'block_categories_all', 'sariyah_register_block_category' );
 
-/**
- * Register all Sariyah blocks from their block.json metadata.
- *
- * ACF 6+ integrates with block.json directly, so do not gate registration
- * behind the legacy acf_register_block_type() function.
- */
 function sariyah_register_blocks(): void {
     $blocks = array(
-        'hero',
-        'event-intro',
-        'event-stats',
-        'features',
-        'speakers',
-        'schedule',
-        'pricing',
-        'gallery',
-        'testimonials',
-        'sponsors',
-        'contact',
+        'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule', 'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
+        'product-card', 'product-grid', 'product-categories', 'best-sellers', 'latest-products',
     );
 
     foreach ( $blocks as $block ) {
         $block_json = get_theme_file_path( 'blocks/' . $block . '/block.json' );
-
-        if ( ! file_exists( $block_json ) ) {
-            continue;
+        if ( file_exists( $block_json ) ) {
+            register_block_type( $block_json );
         }
-
-        register_block_type( $block_json );
     }
 }
 add_action( 'init', 'sariyah_register_blocks' );
 
 function sariyah_enqueue_block_assets(): void {
     $blocks = array(
-        'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule',
-        'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
+        'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule', 'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
+        'product-card', 'product-grid', 'product-categories', 'best-sellers', 'latest-products',
     );
 
     foreach ( $blocks as $block ) {
         $file = get_theme_file_path( 'blocks/' . $block . '/style.css' );
         if ( file_exists( $file ) ) {
-            wp_enqueue_style(
-                'sariyah-' . $block,
-                get_theme_file_uri( 'blocks/' . $block . '/style.css' ),
-                array(),
-                (string) filemtime( $file )
-            );
+            wp_enqueue_style( 'sariyah-' . $block, get_theme_file_uri( 'blocks/' . $block . '/style.css' ), array(), (string) filemtime( $file ) );
         }
     }
 }
@@ -100,7 +72,6 @@ function sariyah_acf_admin_notice(): void {
     if ( function_exists( 'get_field' ) || ! current_user_can( 'activate_plugins' ) ) {
         return;
     }
-
-    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> Advanced Custom Fields (ACF) is required to edit the custom Sariyah event blocks. Please install and activate ACF 6+.</p></div>';
+    echo '<div class="notice notice-warning"><p><strong>Sariyah:</strong> ACF 6+ is required for the custom Sariyah blocks.</p></div>';
 }
 add_action( 'admin_notices', 'sariyah_acf_admin_notice' );
