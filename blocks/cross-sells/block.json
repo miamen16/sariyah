@@ -1,0 +1,1 @@
+{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"sariyah/cross-sells","title":"Sariyah Cross-sells","description":"Displays WooCommerce cross-sell products.","category":"sariyah","icon":"cart","keywords":["woocommerce","cross-sells","products"],"acf":{"mode":"preview","renderTemplate":"render.php"},"supports":{"anchor":true},"style":"file:./style.css"}
