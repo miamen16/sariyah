@@ -34,7 +34,7 @@ function sariyah_get_block_names(): array {
         'hero', 'event-intro', 'event-stats', 'features', 'speakers', 'schedule', 'pricing', 'gallery', 'testimonials', 'sponsors', 'contact',
         'product-card', 'product-grid', 'product-categories', 'best-sellers', 'latest-products', 'sale-products', 'featured-products',
         'product-carousel', 'category-carousel', 'promo-banner', 'trust-bar', 'newsletter',
-        'shop-products', 'mini-cart', 'cart', 'single-product', 'checkout', 'my-account',
+        'shop-products', 'mini-cart', 'cart', 'single-product', 'checkout', 'my-account', 'related-products',
     );
 }
 
