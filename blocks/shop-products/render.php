@@ -17,23 +17,52 @@ $order            = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( w
 $orderby          = in_array( $orderby, $allowed_orderby, true ) ? $orderby : 'date';
 $order            = in_array( $order, $allowed_order, true ) ? $order : 'DESC';
 
+$filter_category = isset( $_GET['product_cat'] ) ? sanitize_title( wp_unslash( $_GET['product_cat'] ) ) : '';
+$filter_stock    = isset( $_GET['stock'] ) ? sanitize_key( wp_unslash( $_GET['stock'] ) ) : '';
+$filter_min      = isset( $_GET['min_price'] ) ? wc_format_decimal( wp_unslash( $_GET['min_price'] ) ) : '';
+$filter_max      = isset( $_GET['max_price'] ) ? wc_format_decimal( wp_unslash( $_GET['max_price'] ) ) : '';
+
+if ( '' !== $filter_min && (float) $filter_min < 0 ) {
+    $filter_min = '0';
+}
+if ( '' !== $filter_max && (float) $filter_max < 0 ) {
+    $filter_max = '';
+}
+if ( '' !== $filter_min && '' !== $filter_max && (float) $filter_min > (float) $filter_max ) {
+    $filter_max = $filter_min;
+}
+
 $paged = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
 
 $args = array(
-    'limit'   => $count,
-    'page'    => $paged,
+    'limit'    => $count,
+    'page'     => $paged,
     'paginate' => true,
-    'status'  => 'publish',
-    'orderby' => $orderby,
-    'order'   => $order,
+    'status'   => 'publish',
+    'orderby'  => $orderby,
+    'order'    => $order,
 );
 
-if ( is_product_category() ) {
+if ( $filter_category ) {
+    $args['category'] = array( $filter_category );
+} elseif ( is_product_category() ) {
     $term = get_queried_object();
     if ( $term instanceof WP_Term ) {
         $args['category'] = array( $term->slug );
         $title = $title ?: $term->name;
     }
+}
+
+if ( '' !== $filter_min ) {
+    $args['min_price'] = (float) $filter_min;
+}
+
+if ( '' !== $filter_max ) {
+    $args['max_price'] = (float) $filter_max;
+}
+
+if ( 'instock' === $filter_stock ) {
+    $args['stock_status'] = 'instock';
 }
 
 if ( ! $title ) {
@@ -45,13 +74,30 @@ $products        = is_object( $products_result ) && isset( $products_result->pro
 $total_pages     = is_object( $products_result ) && isset( $products_result->max_num_pages ) ? (int) $products_result->max_num_pages : 1;
 $current_page    = min( $paged, max( 1, $total_pages ) );
 
-$current_url = remove_query_arg( array( 'orderby', 'order', 'paged' ) );
+$preserved_args = array();
+if ( $filter_category ) {
+    $preserved_args['product_cat'] = $filter_category;
+}
+if ( '' !== $filter_min ) {
+    $preserved_args['min_price'] = $filter_min;
+}
+if ( '' !== $filter_max ) {
+    $preserved_args['max_price'] = $filter_max;
+}
+if ( 'instock' === $filter_stock ) {
+    $preserved_args['stock'] = 'instock';
+}
+
+$current_url = remove_query_arg( array( 'orderby', 'order', 'paged', 'page' ) );
 ?>
 <section class="sariyah-shop-products">
   <div class="sariyah-container">
     <header class="sariyah-shop-products__header">
       <?php if ( $title ) : ?><h1><?php echo esc_html( $title ); ?></h1><?php endif; ?>
       <form class="sariyah-shop-products__sorting" method="get" action="<?php echo esc_url( $current_url ); ?>">
+        <?php foreach ( $preserved_args as $name => $value ) : ?>
+          <input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>">
+        <?php endforeach; ?>
         <label for="sariyah-shop-orderby"><?php esc_html_e( 'Sort by', 'sariyah' ); ?></label>
         <select id="sariyah-shop-orderby" name="orderby" onchange="this.form.submit()">
           <option value="date" <?php selected( $orderby, 'date' ); ?>><?php esc_html_e( 'Latest', 'sariyah' ); ?></option>
@@ -88,9 +134,12 @@ $current_url = remove_query_arg( array( 'orderby', 'order', 'paged' ) );
                       'mid_size'  => 2,
                       'prev_text' => __( 'Previous', 'sariyah' ),
                       'next_text' => __( 'Next', 'sariyah' ),
-                      'add_args'  => array(
-                          'orderby' => $orderby,
-                          'order'   => $order,
+                      'add_args'  => array_merge(
+                          array(
+                              'orderby' => $orderby,
+                              'order'   => $order,
+                          ),
+                          $preserved_args
                       ),
                   )
               )
