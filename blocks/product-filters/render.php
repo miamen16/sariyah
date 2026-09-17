@@ -13,6 +13,18 @@ $max_price = isset( $min_max['max_price'] ) ? (float) $min_max['max_price'] : 0;
 $current_min = isset( $_GET['min_price'] ) ? max( 0, (float) wc_format_decimal( wp_unslash( $_GET['min_price'] ) ) ) : '';
 $current_max = isset( $_GET['max_price'] ) ? max( 0, (float) wc_format_decimal( wp_unslash( $_GET['max_price'] ) ) ) : '';
 
+if ( '' !== $current_min && $max_price > 0 ) {
+    $current_min = min( $current_min, $max_price );
+}
+if ( '' !== $current_max && $max_price > 0 ) {
+    $current_max = min( $current_max, $max_price );
+}
+if ( '' !== $current_min && $min_price > 0 ) {
+    $current_min = max( $current_min, $min_price );
+}
+if ( '' !== $current_max && $min_price > 0 ) {
+    $current_max = max( $current_max, $min_price );
+}
 if ( '' !== $current_min && '' !== $current_max && $current_min > $current_max ) {
     $current_max = $current_min;
 }
@@ -28,34 +40,37 @@ $categories = get_terms(
 );
 
 $selected_category = isset( $_GET['product_cat'] ) ? sanitize_title( wp_unslash( $_GET['product_cat'] ) ) : '';
-$stock = isset( $_GET['stock'] ) ? sanitize_key( wp_unslash( $_GET['stock'] ) ) : '';
-$search = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
-$post_type = isset( $_GET['post_type'] ) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : '';
-$orderby = isset( $_GET['orderby'] ) ? sanitize_key( wp_unslash( $_GET['orderby'] ) ) : '';
-$order = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( wp_unslash( $_GET['order'] ) ) ) : '';
+$stock             = isset( $_GET['stock'] ) ? sanitize_key( wp_unslash( $_GET['stock'] ) ) : '';
+$search            = isset( $_GET['s'] ) ? sanitize_text_field( wp_unslash( $_GET['s'] ) ) : '';
+$orderby           = isset( $_GET['orderby'] ) ? sanitize_key( wp_unslash( $_GET['orderby'] ) ) : '';
+$order             = isset( $_GET['order'] ) ? strtoupper( sanitize_text_field( wp_unslash( $_GET['order'] ) ) ) : '';
 
 $allowed_orderby = array( 'date', 'title', 'price', 'popularity', 'rating' );
-$allowed_order = array( 'ASC', 'DESC' );
-$orderby = in_array( $orderby, $allowed_orderby, true ) ? $orderby : '';
-$order = in_array( $order, $allowed_order, true ) ? $order : '';
+$allowed_order   = array( 'ASC', 'DESC' );
+$orderby         = in_array( $orderby, $allowed_orderby, true ) ? $orderby : '';
+$order           = in_array( $order, $allowed_order, true ) ? $order : '';
 
-$base_url = function_exists( 'is_product_category' ) && is_product_category() ? get_term_link( get_queried_object() ) : wc_get_page_permalink( 'shop' );
-if ( is_wp_error( $base_url ) ) {
-    $base_url = wc_get_page_permalink( 'shop' );
+$current_category_url = function_exists( 'is_product_category' ) && is_product_category() ? get_term_link( get_queried_object() ) : false;
+if ( is_wp_error( $current_category_url ) ) {
+    $current_category_url = false;
 }
+
+$shop_url   = wc_get_page_permalink( 'shop' );
+$base_url   = $current_category_url ? $current_category_url : $shop_url;
+$form_action = $selected_category ? $base_url : $shop_url;
 
 $reset_args = array();
 if ( $search ) {
-    $reset_args['s'] = $search;
+    $reset_args['s']         = $search;
     $reset_args['post_type'] = 'product';
 }
-$reset_url = add_query_arg( $reset_args, $base_url );
+$reset_url = add_query_arg( $reset_args, $shop_url );
 ?>
 <aside class="sariyah-product-filters" aria-label="<?php esc_attr_e( 'Product filters', 'sariyah' ); ?>">
-    <form method="get" action="<?php echo esc_url( $base_url ); ?>">
+    <form method="get" action="<?php echo esc_url( $form_action ); ?>">
         <?php if ( $search ) : ?>
             <input type="hidden" name="s" value="<?php echo esc_attr( $search ); ?>">
-            <input type="hidden" name="post_type" value="<?php echo esc_attr( 'product' === $post_type ? 'product' : 'product' ); ?>">
+            <input type="hidden" name="post_type" value="product">
         <?php endif; ?>
         <?php if ( $orderby ) : ?><input type="hidden" name="orderby" value="<?php echo esc_attr( $orderby ); ?>"><?php endif; ?>
         <?php if ( $order ) : ?><input type="hidden" name="order" value="<?php echo esc_attr( $order ); ?>"><?php endif; ?>
