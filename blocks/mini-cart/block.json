@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/mini-cart",
+  "title":"Sariyah Mini Cart",
+  "description":"Compact WooCommerce cart drawer content.",
+  "category":"sariyah",
+  "icon":"cart",
+  "keywords":["woocommerce","cart","mini cart"],
+  "acf":{"mode":"preview","renderTemplate":"render.php"},
+  "supports":{"anchor":true},
+  "style":"file:./style.css"
+}
