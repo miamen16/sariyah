@@ -1,0 +1,1 @@
+{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"sariyah/product-search","title":"Sariyah Product Search","description":"WooCommerce product search form.","category":"sariyah","icon":"search","keywords":["woocommerce","search","products"],"acf":{"mode":"preview","renderTemplate":"render.php"},"supports":{"anchor":true},"style":"file:./style.css"}
