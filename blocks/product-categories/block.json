@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "sariyah/product-categories",
+  "title": "Sariyah Product Categories",
+  "description": "Displays WooCommerce product categories dynamically.",
+  "category": "sariyah",
+  "icon": "category",
+  "keywords": ["woocommerce", "categories", "shop"],
+  "acf": {"mode": "preview", "renderTemplate": "render.php"},
+  "supports": {"anchor": true, "align": ["wide", "full"]},
+  "style": "file:./style.css"
+}
