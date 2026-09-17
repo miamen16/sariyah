@@ -1,0 +1,13 @@
+{
+  "$schema":"https://schemas.wp.org/trunk/block.json",
+  "apiVersion":3,
+  "name":"sariyah/product-card",
+  "title":"Sariyah Product Card",
+  "description":"Displays a WooCommerce product dynamically.",
+  "category":"sariyah",
+  "icon":"products",
+  "keywords":["woocommerce","product","shop"],
+  "acf":{"mode":"preview","renderTemplate":"render.php"},
+  "supports":{"anchor":true},
+  "style":"file:./style.css"
+}
